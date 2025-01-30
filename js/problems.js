@@ -2,7 +2,6 @@
 
 class ProblemGenerator {
     constructor() {
-        // Initialize generator state
         this.lastProblem = null;
         this.difficultyLevel = 1;
         this.usedProblems = new Set();
@@ -33,7 +32,8 @@ class ProblemGenerator {
             const range = this.getDifficultyRange();
             let num1, num2, problemString;
             let attempts = 0;
-            const maxAttempts = 50; // Prevent infinite loops
+            // Prevent infinite loops
+            const maxAttempts = 50; 
 
             do {
                 // Generate numbers within the current difficulty range
@@ -114,7 +114,7 @@ class ProblemGenerator {
             if (!this.lastProblem || !this.lastProblem.timeStarted) {
                 return 0;
             }
-            return (Date.now() - this.lastProblem.timeStarted) / 1000; // Time in seconds
+            return (Date.now() - this.lastProblem.timeStarted) / 1000; 
         } catch (error) {
             console.error('Error calculating time taken:', error);
             return 0;
@@ -138,5 +138,4 @@ class ProblemGenerator {
     }
 }
 
-// Export a single instance of the ProblemGenerator class
 export default new ProblemGenerator();

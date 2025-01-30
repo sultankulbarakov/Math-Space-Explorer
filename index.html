@@ -14,6 +14,59 @@
     <div id="game-container">
         <!-- Main Menu Screen -->
         <div id="main-menu" class="screen">
+            <svg id="space-background" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+                <defs>
+                    <radialGradient id="space-gradient" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#000066" />
+                        <stop offset="100%" stop-color="#000033" />
+                    </radialGradient>
+
+                    <!-- Star definition -->
+                    <circle id="star" r="1" fill="white" />
+
+                    <!-- Twinkle animation -->
+                    <animate attributeName="opacity" dur="3s" values="0;1;0" repeatCount="indefinite" />
+                </defs>
+
+                <!-- Base background -->
+                <rect width="100%" height="100%" fill="url(#space-gradient)" />
+
+                <!-- Stars -->
+                <g id="stars">
+                    <!-- Small stars -->
+                    <use href="#star" x="100" y="100">
+                        <animate attributeName="opacity" dur="2s" values="0.2;1;0.2" repeatCount="indefinite" />
+                    </use>
+                    <use href="#star" x="300" y="200">
+                        <animate attributeName="opacity" dur="3s" values="0.2;1;0.2" repeatCount="indefinite" />
+                    </use>
+                    <use href="#star" x="500" y="150">
+                        <animate attributeName="opacity" dur="2.5s" values="0.2;1;0.2" repeatCount="indefinite" />
+                    </use>
+                    <!-- Add more stars with different positions -->
+                    <use href="#star" x="200" y="300" />
+                    <use href="#star" x="600" y="400" />
+                    <use href="#star" x="400" y="250" />
+                    <use href="#star" x="150" y="450" />
+                    <use href="#star" x="700" y="200" />
+                </g>
+
+                <!-- Decorative planets -->
+                <!-- Planet 1 -->
+                <circle cx="650" cy="150" r="30" fill="#FF6B6B">
+                    <animate attributeName="cy" dur="10s" values="150;160;150" repeatCount="indefinite" />
+                </circle>
+
+                <!-- Planet 2 -->
+                <circle cx="150" cy="450" r="40" fill="#4ECDC4">
+                    <animate attributeName="cx" dur="15s" values="150;170;150" repeatCount="indefinite" />
+                </circle>
+
+                <!-- Planet 3 -->
+                <circle cx="400" cy="500" r="25" fill="#96CEB4">
+                    <animate attributeName="r" dur="8s" values="25;28;25" repeatCount="indefinite" />
+                </circle>
+            </svg>
             <h1>Math Space Explorer</h1>
             <div class="menu-buttons">
                 <button id="start-button">Start Game</button>
@@ -33,6 +86,45 @@
 
             <!-- Main Game Area -->
             <div id="game-area">
+                <svg id="game-background" class="game-background">
+                    <defs>
+                        <radialGradient id="game-space-gradient" cx="50%" cy="50%" r="70%">
+                            <stop offset="0%" stop-color="#000066" />
+                            <stop offset="100%" stop-color="#000033" />
+                        </radialGradient>
+
+                        <!-- Star definition -->
+                        <circle id="game-star" r="1" fill="white" />
+                    </defs>
+
+                    <!-- Background -->
+                    <rect width="100%" height="100%" fill="url(#game-space-gradient)" />
+
+                    <!-- Stars -->
+                    <g id="game-stars">
+                        <use href="#game-star" x="50" y="50">
+                            <animate attributeName="opacity" dur="2s" values="0.2;1;0.2" repeatCount="indefinite" />
+                        </use>
+                        <use href="#game-star" x="150" y="80">
+                            <animate attributeName="opacity" dur="3s" values="0.2;1;0.2" repeatCount="indefinite" />
+                        </use>
+                        <use href="#game-star" x="280" y="120">
+                            <animate attributeName="opacity" dur="2.5s" values="0.2;1;0.2" repeatCount="indefinite" />
+                        </use>
+                        <use href="#game-star" x="400" y="60" />
+                        <use href="#game-star" x="500" y="180" />
+                        <use href="#game-star" x="650" y="90" />
+                        <use href="#game-star" x="750" y="150" />
+                        <use href="#game-star" x="200" y="200" />
+                        <use href="#game-star" x="350" y="250" />
+                        <use href="#game-star" x="600" y="280" />
+                    </g>
+
+                    <!-- Distant planets -->
+                    <circle cx="100" cy="500" r="20" fill="#4ECDC4" opacity="0.3" />
+                    <circle cx="700" cy="100" r="15" fill="#FF6B6B" opacity="0.3" />
+                </svg>
+                </svg>
                 <div id="planet-display"></div>
                 <div id="astronaut"></div>
                 <div id="crystal-container"></div>
@@ -40,7 +132,6 @@
                     <div id="math-problem"></div>
                     <div class="input-container">
                         <input type="number" id="answer-input" class="no-arrows">
-                        <button id="submit-answer">Check Answer</button>
                     </div>
                 </div>
             </div>

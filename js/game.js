@@ -142,16 +142,17 @@ class Game {
 
     updatePlanetDisplay() {
         try {
-            const planetColors = [
-                '#FF6B6B', // Red (Level 1)
-                '#4ECDC4', // Turquoise (Level 2)
-                '#45B7D1', // Blue (Level 3)
-                '#96CEB4', // Green (Level 4)
-                '#FFEEAD', // Yellow (Level 5)
+            const planetTypes = [
+                'planet-red',
+                'planet-blue',
+                'planet-green',
+                'planet-purple',
+                'planet-orange'
             ];
 
-            const planetColor = planetColors[(player.level - 1) % planetColors.length];
-            this.elements.planetDisplay.style.backgroundColor = planetColor;
+            const planetClass = planetTypes[(player.level - 1) % planetTypes.length];
+            this.elements.planetDisplay.className = '';
+            this.elements.planetDisplay.classList.add('planet-display', planetClass);
             this.elements.level.textContent = player.level;
         } catch (error) {
             console.error('Error updating planet display:', error);
@@ -206,12 +207,10 @@ class Game {
 
     showBonus(text, type = 'points') {
         try {
-            // Create bonus container if it doesn't exist
             let bonusContainer = document.getElementById('bonus-container');
             if (!bonusContainer) {
                 bonusContainer = document.createElement('div');
                 bonusContainer.id = 'bonus-container';
-                // Change this line to append to game-area instead of gameArea
                 document.getElementById('game-area').appendChild(bonusContainer);
             }
 
@@ -219,7 +218,6 @@ class Game {
             bonusDisplay.className = 'time-bonus';
             bonusDisplay.textContent = text;
 
-            // Add specific bonus type class
             switch (type) {
                 case 'speed':
                     bonusDisplay.classList.add('bonus-speed');
@@ -237,7 +235,6 @@ class Game {
 
             bonusContainer.appendChild(bonusDisplay);
 
-            // Extended timeout to match the new animation duration
             setTimeout(() => {
                 if (bonusDisplay && bonusDisplay.parentNode) {
                     bonusDisplay.remove();

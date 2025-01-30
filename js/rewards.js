@@ -1,4 +1,5 @@
 // js/rewards.js
+
 class RewardSystem {
     constructor() {
         this.achievements = [
@@ -78,9 +79,10 @@ class RewardSystem {
     getUnlockedAchievements() {
         return this.achievements.filter(achievement => achievement.unlocked);
     }
-    
+
     calculateTimeBonus(timeLeft) {
-        if (timeLeft >= 25) return 50; // Big bonus for very quick answers
+        // Big bonus for very quick answers
+        if (timeLeft >= 25) return 50; 
         if (timeLeft >= 20) return 30;
         if (timeLeft >= 15) return 20;
         if (timeLeft >= 10) return 10;

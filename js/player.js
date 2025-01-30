@@ -2,13 +2,10 @@
 
 class Player {
     constructor() {
-        // Initialize player state
         this.reset();
 
-        // Initialize DOM elements with error checking
         this.initializeElements();
 
-        // Initial display update
         this.updateDisplay();
     }
 

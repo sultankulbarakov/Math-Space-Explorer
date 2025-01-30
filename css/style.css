@@ -35,40 +35,63 @@ body {
 
 /* Main Menu */
 #main-menu {
-    padding: 50px 0;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 0;
+}
+
+#space-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
 h1 {
-    font-size: 3em;
+    position: relative;
+    z-index: 1;
+    font-size: 4em;
     color: #00ff00;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.5),
+        0 0 40px rgba(0, 255, 0, 0.3);
+    margin-bottom: 50px;
+    animation: glow 2s ease-in-out infinite alternate;
 }
 
 .menu-buttons {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 20px;
 }
 
 /* Buttons */
 button {
-    background: #004080;
+    background: rgba(0, 64, 128, 0.8);
     color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 25px;
-    font-size: 1.2em;
+    border: 2px solid #0088ff;
+    padding: 15px 40px;
+    font-size: 1.5em;
+    border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-width: 200px;
+    min-width: 250px;
+    backdrop-filter: blur(5px);
 }
 
 button:hover {
-    background: #0060c0;
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 96, 192, 0.5);
+    background: rgba(0, 96, 192, 0.9);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 136, 255, 0.5);
 }
 
 /* Game Screen */
@@ -124,6 +147,19 @@ button:hover {
     }
 }
 
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px rgba(0, 255, 0, 0.5),
+            0 0 40px rgba(0, 255, 0, 0.3);
+    }
+
+    to {
+        text-shadow: 0 0 30px rgba(0, 255, 0, 0.8),
+            0 0 50px rgba(0, 255, 0, 0.5),
+            0 0 70px rgba(0, 255, 0, 0.3);
+    }
+}
+
 /* Game Area */
 #game-area {
     position: relative;
@@ -135,6 +171,15 @@ button:hover {
     overflow: hidden;
 }
 
+#game-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
 #planet-display {
     position: absolute;
     width: 150px;
@@ -143,48 +188,82 @@ button:hover {
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
-    box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+    background: linear-gradient(45deg, var(--planet-color-dark), var(--planet-color-light));
+    box-shadow:
+        inset -15px -15px 40px rgba(0, 0, 0, 0.5),
+        inset 5px 5px 40px rgba(255, 255, 255, 0.2),
+        0 0 50px rgba(var(--planet-glow-color), 0.3);
+    overflow: hidden;
     transition: all 0.5s ease;
+}
+
+#planet-display::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.1) 20px,
+            rgba(255, 255, 255, 0.1) 40px);
+    opacity: 0.3;
+}
+
+#planet-display::after {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(-30deg) translateX(-10%);
+    animation: planetRing 8s linear infinite;
 }
 
 #problem-display {
     position: absolute;
-    bottom: 50px;
+    bottom: 40px;
     left: 0;
     right: 0;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
 }
 
 #math-problem {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    font-size: 3.5em;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    color: white;
+    margin-bottom: -30px;
 }
 
 .input-container {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
 }
 
-/* Input Styles */
 input[type="number"].no-arrows {
-    width: 120px;
-    padding: 10px;
-    font-size: 1.5em;
+    width: 150px;
+    padding: 15px;
+    font-size: 2em;
     text-align: center;
-    border-radius: 5px;
-    border: 2px solid #004080;
-    background: rgba(255, 255, 255, 0.9);
-    -webkit-appearance: textfield;
-    appearance: textfield;
+    border-radius: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
 }
 
-input[type="number"].no-arrows::-webkit-inner-spin-button,
-input[type="number"].no-arrows::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
+input[type="number"].no-arrows:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 /* Rewards Area */
@@ -281,15 +360,14 @@ input[type="number"].no-arrows::-webkit-outer-spin-button {
 /* Bonus Display Container */
 #bonus-container {
     position: absolute;
-    top: 0;          /* Change from 50% to 0 */
-    left: 0;         /* Add this */
-    width: 100%;     /* Add this */
-    height: 100%;    /* Add this */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     z-index: 100;
 }
 
-/* Move the bonus text higher up */
 .time-bonus {
     position: absolute;
     left: 50%;
@@ -333,7 +411,7 @@ input[type="number"].no-arrows::-webkit-outer-spin-button {
         opacity: 1;
     }
 
-    70% { /* Added new keyframe to maintain visibility */
+    70% {
         opacity: 1;
         transform: translateX(-50%) translateY(-20px) scale(1);
     }
@@ -342,6 +420,47 @@ input[type="number"].no-arrows::-webkit-outer-spin-button {
         opacity: 0;
         transform: translateX(-50%) translateY(-50px) scale(1);
     }
+}
+
+@keyframes planetRing {
+    from {
+        transform: rotate(-30deg) translateX(-10%);
+    }
+
+    to {
+        transform: rotate(330deg) translateX(-10%);
+    }
+}
+
+/* Planet color variations */
+.planet-red {
+    --planet-color-dark: #8B0000;
+    --planet-color-light: #FF6B6B;
+    --planet-glow-color: 255, 107, 107;
+}
+
+.planet-blue {
+    --planet-color-dark: #00008B;
+    --planet-color-light: #4ECDC4;
+    --planet-glow-color: 78, 205, 196;
+}
+
+.planet-green {
+    --planet-color-dark: #004D00;
+    --planet-color-light: #96CEB4;
+    --planet-glow-color: 150, 206, 180;
+}
+
+.planet-purple {
+    --planet-color-dark: #4B0082;
+    --planet-color-light: #9B59B6;
+    --planet-glow-color: 155, 89, 182;
+}
+
+.planet-orange {
+    --planet-color-dark: #8B4500;
+    --planet-color-light: #FFEEAD;
+    --planet-glow-color: 255, 238, 173;
 }
 
 /* Animation Classes */
@@ -390,6 +509,7 @@ input[type="number"].no-arrows::-webkit-outer-spin-button {
 
 /* Responsive Design */
 @media (max-width: 600px) {
+
     #game-stats {
         flex-direction: column;
         gap: 10px;
@@ -409,12 +529,6 @@ input[type="number"].no-arrows::-webkit-outer-spin-button {
         height: 100px;
     }
 
-    button {
-        padding: 12px 24px;
-        font-size: 1em;
-        min-width: 160px;
-    }
-
     .time-bonus {
         font-size: 1.2em;
     }
@@ -431,5 +545,70 @@ input[type="number"].no-arrows::-webkit-outer-spin-button {
     .modal-content {
         padding: 20px;
         margin: 10px;
+    }
+
+    /* New main menu responsive styles */
+    #main-menu h1 {
+        font-size: 2.5em;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .menu-buttons {
+        width: 90%;
+        padding: 0 20px;
+    }
+
+    .menu-buttons button {
+        padding: 12px 24px;
+        font-size: 1em;
+        min-width: 160px;
+        width: 100%;
+    }
+
+    #space-background {
+        transform: scale(1.2);
+    }
+}
+
+/* Add a medium-size breakpoint for better transitions */
+@media (min-width: 601px) and (max-width: 900px) {
+    #main-menu h1 {
+        font-size: 3em;
+    }
+
+    .menu-buttons button {
+        padding: 14px 28px;
+        font-size: 1.2em;
+        min-width: 200px;
+    }
+
+    #game-stats {
+        font-size: 0.9em;
+    }
+
+    #math-problem {
+        font-size: 2.2em;
+    }
+}
+
+/* Landscape mode adjustments for mobile devices */
+@media (max-height: 500px) and (orientation: landscape) {
+    #main-menu {
+        padding: 20px 0;
+    }
+
+    #main-menu h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .menu-buttons {
+        gap: 10px;
+    }
+
+    .menu-buttons button {
+        padding: 8px 20px;
+        font-size: 0.9em;
     }
 }
