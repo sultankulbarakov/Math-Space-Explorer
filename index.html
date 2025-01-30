@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Space Explorer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Add favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+</head>
+
+<body>
+    <div id="game-container">
+        <!-- Main Menu Screen -->
+        <div id="main-menu" class="screen">
+            <h1>Math Space Explorer</h1>
+            <div class="menu-buttons">
+                <button id="start-button">Start Game</button>
+                <button id="instructions-button">Instructions</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen hidden">
+            <!-- Top Bar -->
+            <div id="game-stats">
+                <div id="level">Level: <span>1</span></div>
+                <div id="score">Score: <span>0</span></div>
+                <div id="streak">Streak: <span>0</span></div>
+                <div id="timer" class="hidden">Time: <span>30</span>s</div>
+            </div>
+
+            <!-- Main Game Area -->
+            <div id="game-area">
+                <div id="planet-display"></div>
+                <div id="astronaut"></div>
+                <div id="crystal-container"></div>
+                <div id="problem-display">
+                    <div id="math-problem"></div>
+                    <div class="input-container">
+                        <input type="number" id="answer-input" class="no-arrows">
+                        <button id="submit-answer">Check Answer</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rewards Area -->
+            <div id="rewards-area">
+                <div id="crystals-collected">Crystals: <span>0</span></div>
+                <div id="achievements"></div>
+            </div>
+        </div>
+
+        <!-- Level Complete Screen -->
+        <div id="level-complete" class="screen hidden">
+            <h2>Level Complete!</h2>
+            <div id="level-stats"></div>
+            <div class="achievement-unlocked hidden">
+                <h3>Achievement Unlocked!</h3>
+                <div id="achievement-details"></div>
+            </div>
+            <button id="next-level">Next Planet</button>
+        </div>
+
+        <!-- Instructions Modal -->
+        <div id="instructions-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>How to Play</h2>
+                <p>Welcome to Math Space Explorer!</p>
+                <ul>
+                    <li>Solve multiplication problems to collect crystals</li>
+                    <li>Get streak bonuses for consecutive correct answers</li>
+                    <li>Collect 5 crystals to complete each level</li>
+                    <li>Watch out for timed challenges!</li>
+                </ul>
+                <div class="controls-info">
+                    <h3>Controls:</h3>
+                    <p>Type your answer and press Enter or click Check Answer</p>
+                </div>
+                <button id="close-instructions">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="sound-correct" src="assets/sounds/correct.mp3" preload="auto"></audio>
+    <audio id="sound-wrong" src="assets/sounds/wrong.mp3" preload="auto"></audio>
+    <audio id="sound-crystal" src="assets/sounds/crystal.mp3" preload="auto"></audio>
+    <audio id="sound-levelup" src="assets/sounds/levelup.mp3" preload="auto"></audio>
+    <audio id="sound-achievement" src="assets/sounds/achievement.mp3" preload="auto"></audio>
+    <audio id="background-music" src="assets/sounds/background.mp3" loop preload="auto"></audio>
+
+    <!-- Load JavaScript Modules -->
+    <script src="js/problems.js" type="module"></script>
+    <script src="js/rewards.js" type="module"></script>
+    <script src="js/player.js" type="module"></script>
+    <script src="js/game.js" type="module"></script>
+</body>
+
+</html>

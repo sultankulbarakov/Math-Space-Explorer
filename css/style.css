@@ -1,0 +1,435 @@
+/* css/style.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #000033 0%, #000066 100%);
+    color: white;
+    min-height: 100vh;
+}
+
+/* Container */
+#game-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Screen Styles */
+.screen {
+    width: 100%;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Main Menu */
+#main-menu {
+    padding: 50px 0;
+}
+
+h1 {
+    font-size: 3em;
+    color: #00ff00;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    margin-bottom: 30px;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Buttons */
+button {
+    background: #004080;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+button:hover {
+    background: #0060c0;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 96, 192, 0.5);
+}
+
+/* Game Screen */
+#game-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+/* Timer Styles */
+#timer {
+    position: relative;
+    padding: 10px 20px;
+    background: rgba(255, 0, 0, 0.2);
+    border-radius: 15px;
+    animation: pulse 2s infinite;
+}
+
+#timer.warning {
+    background: rgba(255, 0, 0, 0.4);
+    animation: pulse-warning 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse-warning {
+    0% {
+        background: rgba(255, 0, 0, 0.4);
+    }
+
+    50% {
+        background: rgba(255, 0, 0, 0.7);
+    }
+
+    100% {
+        background: rgba(255, 0, 0, 0.4);
+    }
+}
+
+/* Game Area */
+#game-area {
+    position: relative;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#planet-display {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+    transition: all 0.5s ease;
+}
+
+#problem-display {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+#math-problem {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Input Styles */
+input[type="number"].no-arrows {
+    width: 120px;
+    padding: 10px;
+    font-size: 1.5em;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #004080;
+    background: rgba(255, 255, 255, 0.9);
+    -webkit-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type="number"].no-arrows::-webkit-inner-spin-button,
+input[type="number"].no-arrows::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+/* Rewards Area */
+#rewards-area {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    font-size: 1.2em;
+}
+
+/* Level Complete Screen */
+#level-complete {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    z-index: 100;
+    min-width: 300px;
+}
+
+#level-complete h2 {
+    color: #00ff00;
+    margin-bottom: 20px;
+}
+
+#level-stats {
+    margin: 20px 0;
+    line-height: 1.5;
+    font-size: 1.1em;
+}
+
+/* Achievement Styles */
+.achievement-unlocked {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 10px;
+}
+
+.achievement {
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.achievement h4 {
+    color: #ffd700;
+    margin-bottom: 5px;
+}
+
+/* Instructions Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: rgba(0, 0, 0, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-content h2 {
+    color: #00ff00;
+    margin-bottom: 20px;
+}
+
+.modal-content ul {
+    text-align: left;
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+.modal-content li {
+    margin: 10px 0;
+}
+
+/* Bonus Display Container */
+#bonus-container {
+    position: absolute;
+    top: 0;          /* Change from 50% to 0 */
+    left: 0;         /* Add this */
+    width: 100%;     /* Add this */
+    height: 100%;    /* Add this */
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Move the bonus text higher up */
+.time-bonus {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: float-up 2.5s ease-out forwards;
+    white-space: nowrap;
+}
+
+/* Position different types of bonuses */
+.bonus-speed {
+    top: 5%;
+    color: #ffff00 !important;
+}
+
+.bonus-streak {
+    top: 15%;
+    color: #ff9900 !important;
+}
+
+.bonus-time {
+    top: 25%;
+    color: #00ff00 !important;
+}
+
+.bonus-points {
+    top: 35%;
+    color: #ffffff !important;
+}
+
+@keyframes float-up {
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+
+    20% {
+        transform: translateX(-50%) scale(1.2);
+        opacity: 1;
+    }
+
+    70% { /* Added new keyframe to maintain visibility */
+        opacity: 1;
+        transform: translateX(-50%) translateY(-20px) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50px) scale(1);
+    }
+}
+
+/* Animation Classes */
+.correct-answer {
+    animation: correct 0.5s ease;
+}
+
+.wrong-answer {
+    animation: wrong 0.5s ease;
+}
+
+@keyframes correct {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+        color: #00ff00;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes wrong {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+        color: #ff0000;
+    }
+
+    75% {
+        transform: translateX(10px);
+        color: #ff0000;
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    #game-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #math-problem {
+        font-size: 2em;
+    }
+
+    .input-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #planet-display {
+        width: 100px;
+        height: 100px;
+    }
+
+    button {
+        padding: 12px 24px;
+        font-size: 1em;
+        min-width: 160px;
+    }
+
+    .time-bonus {
+        font-size: 1.2em;
+    }
+
+    #level-complete {
+        width: 90%;
+        padding: 20px;
+    }
+
+    #level-stats {
+        font-size: 0.9em;
+    }
+
+    .modal-content {
+        padding: 20px;
+        margin: 10px;
+    }
+}
